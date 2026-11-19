@@ -1,0 +1,1052 @@
+/* ==========================================================================
+   Zomato Design System — Authentic Web Application Stylesheet
+   Adapting Zomato's brand identity, typography, components, and animations.
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Metropolis:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap');
+
+:root {
+    --zomato-red: #E23744;
+    --zomato-red-hover: #D32332;
+    --zomato-red-light: #FFF4F5;
+    --zomato-red-border: rgba(226, 55, 68, 0.2);
+    --zomato-dark: #1C1C1C;
+    --zomato-charcoal: #363636;
+    --zomato-muted: #828282;
+    --zomato-gray-bg: #F8F8F8;
+    --zomato-border: #E8E8E8;
+    --zomato-rating-green: #24963F;
+    --zomato-rating-yellow: #E5AC00;
+    --card-shadow: 0 4px 18px rgba(0, 0, 0, 0.06);
+    --card-hover-shadow: 0 8px 28px rgba(226, 55, 68, 0.12);
+}
+
+/* Global Font & Reset */
+html, body, [class*="css"], [class*="st-"] {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
+    color: var(--zomato-dark);
+}
+
+/* Hide Streamlit default chrome & margins for a clean native app look */
+#MainMenu, footer, header {visibility: hidden !important;}
+.block-container {
+    padding-top: 1rem !important;
+    padding-bottom: 3rem !important;
+    max-width: 96% !important;
+    width: 96% !important;
+}
+
+/* ==========================================================================
+   1. Authentic Zomato Top Navigation Bar
+   ========================================================================== */
+.zomato-navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 24px;
+    background: #FFFFFF;
+    border-radius: 16px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
+    border: 1px solid #F0F0F0;
+}
+
+.zomato-logo-wrap {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none;
+}
+
+.zomato-logo {
+    font-family: 'Metropolis', 'Inter', sans-serif !important;
+    font-size: 2.2rem;
+    font-weight: 900;
+    font-style: italic;
+    color: var(--zomato-red);
+    letter-spacing: -1.5px;
+    line-height: 1;
+    margin: 0;
+}
+
+.zomato-logo-badge {
+    background: #FFF0F1;
+    color: var(--zomato-red);
+    font-size: 0.68rem;
+    font-weight: 700;
+    padding: 3px 8px;
+    border-radius: 8px;
+    border: 1px solid var(--zomato-red-border);
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+}
+
+.zomato-search-pill {
+    display: flex;
+    align-items: center;
+    background: #FFFFFF;
+    border: 1px solid #E8E8E8;
+    border-radius: 12px;
+    padding: 8px 16px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+    min-width: 480px;
+    gap: 12px;
+}
+
+.search-location {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.88rem;
+    color: var(--zomato-charcoal);
+    font-weight: 500;
+    white-space: nowrap;
+}
+
+.search-divider {
+    width: 1px;
+    height: 22px;
+    background: #D9D9D9;
+}
+
+.search-placeholder {
+    font-size: 0.88rem;
+    color: #9C9C9C;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    width: 100%;
+}
+
+.nav-actions {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    white-space: nowrap;
+}
+
+.nav-link-btn {
+    font-size: 0.95rem;
+    color: var(--zomato-charcoal);
+    font-weight: 500;
+    cursor: pointer;
+    text-decoration: none;
+    transition: color 0.15s;
+    white-space: nowrap;
+}
+
+.nav-link-btn:hover {
+    color: var(--zomato-red);
+}
+
+/* Authentic Floating Top Navbar Container */
+.st-key-zomato_navbar_container {
+    background: #FFFFFF !important;
+    border-radius: 16px !important;
+    padding: 8px 20px !important;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04) !important;
+    border: 1px solid #ECECEC !important;
+    margin-bottom: 20px !important;
+}
+
+.st-key-zomato_navbar_container [data-testid="column"] {
+    display: flex !important;
+    align-items: center !important;
+    min-width: 0 !important;
+}
+
+.st-key-zomato_navbar_container .zomato-logo-wrap {
+    display: flex !important;
+    align-items: center !important;
+    gap: 8px !important;
+    white-space: nowrap !important;
+}
+
+.st-key-zomato_navbar_container .nav-actions {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: flex-end !important;
+    gap: 16px !important;
+    white-space: nowrap !important;
+    width: 100% !important;
+}
+
+.st-key-zomato_navbar_container .nav-link-btn {
+    white-space: nowrap !important;
+    font-size: 0.92rem !important;
+}
+
+/* Active Top Search Bar in Exact Center */
+.st-key-zomato_search_input {
+    margin-bottom: 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+}
+
+.st-key-zomato_search_input div[data-baseweb="base-input"] {
+    background-color: #FFFFFF !important;
+    border: 1.5px solid #E2E2E2 !important;
+    border-radius: 28px !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04) !important;
+    padding: 2px 16px !important;
+    transition: all 0.2s ease !important;
+    height: 42px !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+}
+
+.st-key-zomato_search_input div[data-baseweb="base-input"]:focus-within {
+    border-color: #E23744 !important;
+    box-shadow: 0 3px 12px rgba(226, 55, 68, 0.16) !important;
+}
+
+.st-key-zomato_search_input input {
+    font-size: 0.88rem !important;
+    color: #1C1C1C !important;
+    font-family: inherit !important;
+}
+
+.st-key-zomato_search_input input::placeholder {
+    color: #757575 !important;
+    font-size: 0.86rem !important;
+}
+
+/* ==========================================================================
+   2. Service Category Tabs (Dining Out, Delivery, Nightlife)
+   ========================================================================== */
+.zomato-tab-bar {
+    display: flex;
+    align-items: center;
+    gap: 36px;
+    border-bottom: 1.5px solid #E8E8E8;
+    margin-bottom: 24px;
+    padding-left: 8px;
+}
+
+.zomato-tab-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding-bottom: 14px;
+    cursor: pointer;
+    font-size: 1.15rem;
+    font-weight: 500;
+    color: #696969;
+    border-bottom: 3px solid transparent;
+    transition: all 0.2s ease;
+    margin-bottom: -2px;
+}
+
+.zomato-tab-item.active {
+    color: var(--zomato-red);
+    font-weight: 700;
+    border-bottom: 3px solid var(--zomato-red);
+}
+
+.tab-icon-wrap {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: #F8F8F8;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.4rem;
+    transition: background 0.2s;
+}
+
+.zomato-tab-item.active .tab-icon-wrap {
+    background: #FCEECF;
+}
+
+/* ==========================================================================
+   3. Hero Banner & Authentic Floating Metric Pill ("Better food for more people")
+   ========================================================================== */
+.hero-banner-container {
+    background: linear-gradient(135deg, #FFFFFF 0%, #FFF8F8 50%, #FFF0F2 100%);
+    border-radius: 20px;
+    padding: 24px 28px;
+    margin-bottom: 24px;
+    border: 1px solid #FFE4E6;
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    box-sizing: border-box;
+    text-align: center;
+}
+
+.hero-title {
+    font-size: 2.1rem;
+    font-weight: 800;
+    color: var(--zomato-red);
+    line-height: 1.25;
+    margin-bottom: 8px;
+    letter-spacing: -0.5px;
+    text-align: center;
+}
+
+.hero-subtitle {
+    font-size: 0.95rem;
+    color: #4F4F4F;
+    line-height: 1.55;
+    max-width: 650px;
+    margin: 0 auto 18px auto;
+    text-align: center;
+}
+
+.stats-pill-container {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    background: #FFFFFF;
+    border-radius: 14px;
+    padding: 12px 6px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
+    border: 1px solid #ECECEC;
+    width: 100%;
+    max-width: 100%;
+    margin: 0 auto;
+    box-sizing: border-box;
+}
+
+.stat-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 4px 6px;
+    min-width: 0;
+    overflow: hidden;
+    box-sizing: border-box;
+}
+
+.stat-item:not(:last-child) {
+    border-right: 1px solid #ECECEC;
+}
+
+.stat-value {
+    font-size: 0.98rem;
+    font-weight: 700;
+    color: var(--zomato-dark);
+    line-height: 1.2;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    white-space: nowrap;
+    letter-spacing: -0.2px;
+}
+
+.stat-icon {
+    font-size: 0.92rem;
+    line-height: 1;
+    display: inline-block;
+}
+
+.stat-label {
+    font-size: 0.72rem;
+    color: #696969;
+    font-weight: 600;
+    margin-top: 3px;
+    line-height: 1.3;
+    text-align: center;
+    white-space: normal;
+    word-break: normal;
+}
+
+.stat-divider {
+    display: none;
+}
+
+/* ==========================================================================
+   4. Circular Inspiration / Cuisine Badges (Large, clear, identical size)
+   ========================================================================== */
+.section-headline {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--zomato-dark);
+    margin-top: 10px;
+    margin-bottom: 16px;
+    letter-spacing: -0.3px;
+}
+
+.cuisine-grid {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 14px;
+    margin-bottom: 26px;
+    width: 100%;
+}
+
+.cuisine-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+    flex: 1 1 95px;
+    max-width: 110px;
+}
+
+.cuisine-item:hover {
+    transform: translateY(-4px);
+}
+
+.cuisine-circle-img {
+    width: 92px;
+    height: 92px;
+    min-width: 92px;
+    min-height: 92px;
+    max-width: 92px;
+    max-height: 92px;
+    border-radius: 50%;
+    object-fit: cover;
+    aspect-ratio: 1 / 1;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.09);
+    border: 3px solid #FFFFFF;
+    margin-bottom: 8px;
+    transition: all 0.2s ease;
+}
+
+.cuisine-item:hover .cuisine-circle-img {
+    box-shadow: 0 6px 20px rgba(226, 55, 68, 0.3);
+    border-color: var(--zomato-red);
+    transform: scale(1.05);
+}
+
+.cuisine-label {
+    font-size: 0.88rem;
+    font-weight: 600;
+    color: var(--zomato-charcoal);
+    line-height: 1.25;
+}
+
+/* ==========================================================================
+   5. Top Brands Grid (Full width at a glance)
+   ========================================================================== */
+.brand-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 12px;
+    margin-bottom: 24px;
+    width: 100%;
+}
+
+.brand-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    transition: transform 0.15s ease;
+}
+
+.brand-item:hover {
+    transform: translateY(-3px);
+}
+
+.brand-avatar {
+    width: 62px;
+    height: 62px;
+    border-radius: 50%;
+    background: #FFFFFF;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.06);
+    border: 1px solid #ECECEC;
+    font-size: 1.4rem;
+    color: var(--zomato-red);
+    margin-bottom: 6px;
+}
+
+.brand-name {
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: var(--zomato-dark);
+    line-height: 1.2;
+    margin-bottom: 2px;
+}
+
+.brand-time {
+    font-size: 0.7rem;
+    color: var(--zomato-muted);
+    font-weight: 500;
+}
+
+/* ==========================================================================
+   6. "What's waiting for you on the app" Feature Cards
+   ========================================================================== */
+.feature-cards-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 10px;
+    margin-bottom: 24px;
+    width: 100%;
+}
+
+.feature-card {
+    background: #FFFFFF;
+    border-radius: 14px;
+    padding: 12px 6px;
+    text-align: center;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+    border: 1px solid #F0F0F0;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.feature-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+}
+
+.feature-icon {
+    font-size: 1.6rem;
+    margin-bottom: 4px;
+    display: block;
+}
+
+.feature-title {
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: var(--zomato-charcoal);
+    line-height: 1.25;
+}
+
+/* ==========================================================================
+   7. Zomato Authentic Restaurant Card Component & Grids
+   ========================================================================== */
+.trending-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-bottom: 24px;
+    width: 100%;
+}
+
+.recommendations-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 18px;
+    margin-bottom: 26px;
+    width: 100%;
+}
+
+.zomato-card {
+    background: #FFFFFF;
+    border-radius: 16px;
+    border: 1px solid #EFEFEF;
+    overflow: hidden;
+    margin-bottom: 0;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
+    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.zomato-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 30px rgba(226, 55, 68, 0.12);
+    border-color: rgba(226, 55, 68, 0.35);
+}
+
+.card-hero-image-wrap {
+    position: relative;
+    width: 100%;
+    height: 180px;
+    overflow: hidden;
+    background: #2C3E50;
+}
+
+.card-hero-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.zomato-card:hover .card-hero-img {
+    transform: scale(1.04);
+}
+
+.card-top-badges {
+    position: absolute;
+    top: 14px;
+    left: 14px;
+    right: 14px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.promoted-pill {
+    background: rgba(0, 0, 0, 0.65);
+    color: #FFFFFF;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    padding: 3px 8px;
+    border-radius: 6px;
+    backdrop-filter: blur(4px);
+}
+
+.rank-pill {
+    background: var(--zomato-red);
+    color: #FFFFFF;
+    font-size: 0.78rem;
+    font-weight: 800;
+    padding: 4px 10px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(226, 55, 68, 0.5);
+}
+
+.card-body {
+    padding: 20px;
+}
+
+.card-header-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 6px;
+}
+
+.restaurant-name {
+    font-size: 1.35rem;
+    font-weight: 700;
+    color: var(--zomato-dark);
+    margin: 0;
+    line-height: 1.25;
+}
+
+.zomato-rating {
+    background: var(--zomato-rating-green);
+    color: #FFFFFF;
+    font-weight: 700;
+    font-size: 0.88rem;
+    padding: 3px 8px;
+    border-radius: 6px;
+    display: inline-flex;
+    align-items: center;
+    gap: 3px;
+    box-shadow: 0 2px 6px rgba(36, 150, 63, 0.3);
+}
+
+.card-sub-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #696969;
+    font-size: 0.9rem;
+    margin-bottom: 12px;
+}
+
+.card-cuisine {
+    color: #4F4F4F;
+    font-weight: 500;
+}
+
+.card-cost {
+    font-weight: 600;
+    color: var(--zomato-dark);
+}
+
+/* AI Recommendation Quote Box */
+.ai-explanation-box {
+    background: #FFF8F8;
+    border-left: 4px solid var(--zomato-red);
+    border-radius: 0 10px 10px 0;
+    padding: 12px 14px;
+    margin: 12px 0 16px 0;
+    font-size: 0.88rem;
+    line-height: 1.5;
+    color: #374151;
+}
+
+.ai-explanation-title {
+    font-weight: 700;
+    color: var(--zomato-red);
+    font-size: 0.82rem;
+    margin-bottom: 4px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+}
+
+.card-footer-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 12px;
+    border-top: 1px solid #F2F2F2;
+}
+
+.tag-badge {
+    background: #F3F4F6;
+    color: #374151;
+    font-size: 0.78rem;
+    font-weight: 600;
+    padding: 3px 8px;
+    border-radius: 6px;
+    margin-right: 6px;
+}
+
+.zomato-btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--zomato-red);
+    color: #FFFFFF !important;
+    text-decoration: none !important;
+    font-weight: 600;
+    font-size: 0.85rem;
+    padding: 7px 16px;
+    border-radius: 8px;
+    transition: background 0.15s ease, transform 0.15s ease;
+}
+
+.zomato-btn-primary:hover {
+    background: var(--zomato-red-hover);
+    transform: translateY(-1px);
+}
+
+/* ==========================================================================
+   8. Streamlit Form & Controls Overrides
+   ========================================================================== */
+/* Primary Action Button - Single Line "✨ Discover Recommendations" */
+div.stButton > button[kind="primary"] {
+    background: linear-gradient(135deg, #EF4F5F 0%, #E23744 100%) !important;
+    border: none !important;
+    border-radius: 12px !important;
+    color: #FFFFFF !important;
+    font-weight: 700 !important;
+    font-size: 0.96rem !important;
+    padding: 12px 14px !important;
+    box-shadow: 0 4px 14px rgba(226, 55, 68, 0.35) !important;
+    transition: all 0.2s ease !important;
+    width: 100% !important;
+    white-space: nowrap !important;
+    word-break: keep-all !important;
+    overflow: visible !important;
+    text-overflow: clip !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+}
+
+div.stButton > button[kind="primary"]:hover {
+    background: linear-gradient(135deg, #E23744 0%, #C92A36 100%) !important;
+    box-shadow: 0 6px 20px rgba(226, 55, 68, 0.45) !important;
+    transform: translateY(-2px) !important;
+}
+
+div.stButton > button[kind="primary"] p {
+    font-size: 0.96rem !important;
+    font-weight: 700 !important;
+    white-space: nowrap !important;
+    word-break: keep-all !important;
+    margin: 0 !important;
+    line-height: 1.2 !important;
+}
+
+/* Input Fields, Selectboxes, Textareas & Form Styling */
+[data-testid="stForm"] {
+    background: #FFFFFF !important;
+    border-radius: 18px !important;
+    border: 1px solid #EAEAEA !important;
+    padding: 22px 20px !important;
+    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.04) !important;
+}
+
+/* Ensure form labels are clear, comfortable, and never clipped */
+[data-testid="stWidgetLabel"] label, 
+[data-testid="stWidgetLabel"] p {
+    font-size: 0.95rem !important;
+    font-weight: 600 !important;
+    color: #1C1C1C !important;
+    white-space: normal !important;
+    line-height: 1.45 !important;
+    margin-bottom: 4px !important;
+}
+
+/* BaseWeb Selectbox (Locality & Dropdowns) - Spacious & Never Cut Off */
+div[data-baseweb="select"] {
+    width: 100% !important;
+}
+
+div[data-baseweb="select"] > div {
+    min-height: 48px !important;
+    border-radius: 12px !important;
+    border-color: #D1D5DB !important;
+    background: #FFFFFF !important;
+    padding: 2px 12px !important;
+    font-size: 0.93rem !important;
+    transition: border-color 0.2s, box-shadow 0.2s !important;
+}
+
+div[data-baseweb="select"] > div:hover {
+    border-color: var(--zomato-red) !important;
+    box-shadow: 0 0 0 1px var(--zomato-red) !important;
+}
+
+/* Selected text inside closed selectbox */
+div[data-baseweb="select"] span,
+div[data-baseweb="select"] [data-testid="stMarkdownContainer"] p,
+div[data-baseweb="select"] div[aria-selected] {
+    font-size: 0.92rem !important;
+    font-weight: 500 !important;
+    color: #1C1C1C !important;
+    white-space: normal !important;
+    overflow: visible !important;
+    text-overflow: clip !important;
+    line-height: 1.35 !important;
+}
+
+/* Popover & Dropdown Menu List Options (Locality, Budget Band, Cuisine) - Large & Fully Legible */
+div[data-baseweb="popover"] {
+    min-width: 360px !important;
+    max-width: 520px !important;
+    box-shadow: 0 6px 24px rgba(0, 0, 0, 0.12) !important;
+    border-radius: 12px !important;
+}
+
+div[data-baseweb="popover"] ul[role="listbox"] {
+    min-width: 360px !important;
+    max-width: 520px !important;
+}
+
+div[data-baseweb="popover"] li[role="option"] {
+    white-space: normal !important;
+    word-break: normal !important;
+    line-height: 1.4 !important;
+    padding: 10px 14px !important;
+    font-size: 0.92rem !important;
+}
+
+div[data-baseweb="popover"] li[role="option"]:hover {
+    background: #FFF4F5 !important;
+    color: var(--zomato-red) !important;
+}
+
+/* BaseWeb Input Fields */
+div[data-baseweb="input"] > div {
+    min-height: 48px !important;
+    border-radius: 12px !important;
+    border-color: #D1D5DB !important;
+    font-size: 0.95rem !important;
+    transition: border-color 0.2s, box-shadow 0.2s !important;
+}
+
+div[data-baseweb="input"] > div:hover {
+    border-color: var(--zomato-red) !important;
+}
+
+/* BaseWeb Textarea (Special Preferences / Mood) - Large, Spacious & Clear */
+div[data-baseweb="textarea"] {
+    width: 100% !important;
+}
+
+div[data-baseweb="textarea"] textarea {
+    min-height: 130px !important;
+    font-size: 0.96rem !important;
+    line-height: 1.55 !important;
+    padding: 12px 14px !important;
+    border-radius: 12px !important;
+    border-color: #D1D5DB !important;
+    color: #1C1C1C !important;
+    resize: vertical !important;
+    transition: border-color 0.2s, box-shadow 0.2s !important;
+}
+
+div[data-baseweb="textarea"] textarea:hover,
+div[data-baseweb="textarea"] textarea:focus {
+    border-color: var(--zomato-red) !important;
+    box-shadow: 0 0 0 1px var(--zomato-red) !important;
+}
+
+/* Slider labels and track */
+[data-testid="stSlider"] label {
+    font-size: 0.96rem !important;
+    font-weight: 600 !important;
+}
+
+/* Sidebar Styling & Status Cards */
+[data-testid="stSidebar"] {
+    background: #FAFAFA !important;
+    border-right: 1px solid #ECECEC !important;
+    padding-top: 1.5rem !important;
+}
+
+.sidebar-info-card {
+    background: #FFFFFF;
+    border-radius: 14px;
+    border: 1px solid #EAEAEA;
+    padding: 16px 18px;
+    margin-bottom: 16px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);
+}
+
+/* Left Hero & Preference Box Styling */
+.find-spot-banner {
+    background: #FFFFFF;
+    border: 1px solid #EAEAEA;
+    border-radius: 18px;
+    padding: 24px 26px;
+    margin-bottom: 16px;
+    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.04);
+}
+
+.find-spot-title {
+    font-size: 1.35rem;
+    font-weight: 800;
+    color: #1C1C1C;
+    margin-bottom: 6px;
+    line-height: 1.3;
+}
+
+.find-spot-subtitle {
+    font-size: 0.92rem;
+    color: #696969;
+    line-height: 1.5;
+}
+
+/* Custom Metrics Dashboard Grid */
+.metrics-dashboard-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 14px;
+    margin: 16px 0 24px 0;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.metric-box {
+    background: #FFFFFF;
+    border: 1px solid #EAEAEA;
+    border-radius: 14px;
+    padding: 14px 16px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);
+    text-align: left;
+    transition: transform 0.15s ease, border-color 0.15s ease;
+    box-sizing: border-box;
+}
+
+.metric-box:hover {
+    transform: translateY(-2px);
+    border-color: rgba(226, 55, 68, 0.35);
+}
+
+.metric-box-label {
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: #696969;
+    margin-bottom: 6px;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.metric-box-val {
+    display: flex;
+    align-items: baseline;
+    gap: 6px;
+    flex-wrap: wrap;
+    margin-bottom: 4px;
+}
+
+.metric-number {
+    font-size: 1.3rem;
+    font-weight: 800;
+    color: var(--zomato-red);
+    line-height: 1.1;
+}
+
+.metric-unit {
+    font-size: 0.76rem;
+    font-weight: 600;
+    color: #4F4F4F;
+    line-height: 1.2;
+}
+
+.metric-box-sub {
+    font-size: 0.72rem;
+    color: #828282;
+    line-height: 1.25;
+}
+
+/* AI Summary Card */
+.ai-summary-card {
+    background: #FFFFFF;
+    border-radius: 16px;
+    padding: 20px 24px;
+    margin-bottom: 24px;
+    border: 1px solid #FFE4E6;
+    border-left: 6px solid var(--zomato-red);
+    box-shadow: 0 4px 16px rgba(226, 55, 68, 0.06);
+}
+
+.ai-summary-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--zomato-red);
+    font-weight: 800;
+    font-size: 1.15rem;
+    margin-bottom: 8px;
+}
+
+.ai-summary-text {
+    font-size: 0.98rem;
+    color: #374151;
+    line-height: 1.6;
+}
+
+/* Square-Type Balanced Recommendation Card */
+.recommendations-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 22px;
+    margin-bottom: 28px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.rec-card-square {
+    background: #FFFFFF;
+    border-radius: 18px;
+    border: 1px solid #EFEFEF;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.05);
+    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+    box-sizing: border-box;
+    width: 100%;
+}
+
+.rec-card-square:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 30px rgba(226, 55, 68, 0.12);
+    border-color: rgba(226, 55, 68, 0.35);
+}
+
+.rec-card-square .card-hero-image-wrap {
+    height: 175px;
+}
+
+.rec-card-square .card-body {
+    padding: 16px 18px;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    justify-content: space-between;
+}

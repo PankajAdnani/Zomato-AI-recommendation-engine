@@ -165,6 +165,23 @@ class RecommendResponse(BaseModel):
     candidate_count: int
 
 
+@app.get("/")
+def root():
+    return {
+        "service": "Zomato AI Recommendation Engine API",
+        "status": "online",
+        "docs": "/docs",
+        "health": "/api/health",
+        "endpoints": [
+            "/api/health",
+            "/api/metadata",
+            "/api/search?q={query}",
+            "/api/trending",
+            "/api/recommend"
+        ]
+    }
+
+
 @app.get("/api/health")
 def health_check():
     df = get_data()

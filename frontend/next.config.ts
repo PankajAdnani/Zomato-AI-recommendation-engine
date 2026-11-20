@@ -1,8 +1,5 @@
 import type { NextConfig } from "next";
 
-const rawBackendUrl = process.env.FASTAPI_BACKEND_URL || "http://127.0.0.1:8000";
-const backendUrl = rawBackendUrl.replace(/\/+$/, "");
-
 const nextConfig: NextConfig = {
   output: "standalone",
   images: {
@@ -12,22 +9,6 @@ const nextConfig: NextConfig = {
         hostname: "images.unsplash.com",
       },
     ],
-  },
-  turbopack: {
-    rules: {
-      "*.css": {
-        loaders: ["@tailwindcss/turbopack"],
-        as: "*.css",
-      },
-    },
-  },
-  async rewrites() {
-    return [
-      {
-        source: "/api/:path*",
-        destination: `${backendUrl}/api/:path*`,
-      },
-    ];
   },
 };
 

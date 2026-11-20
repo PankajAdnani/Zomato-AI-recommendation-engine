@@ -2,40 +2,12 @@
 
 import React, { useState, useEffect, useMemo } from "react";
 import Image from "next/image";
-
-interface RestaurantItem {
-  restaurant_id: string;
-  name: string;
-  location: string;
-  cuisines: string;
-  rating: number;
-  votes_count: number;
-  cost_for_two: number | null;
-  dish_liked: string | null;
-  url: string;
-  image_url: string;
-}
-
-interface RecommendationCard {
-  restaurant_id: string;
-  name: string;
-  cuisines: string;
-  location: string;
-  rating: number;
-  cost_for_two: number | null;
-  why_recommended: string;
-  highlights: string[];
-  must_try_dishes: string[];
-  url: string;
-  image_url: string;
-}
-
-interface Metrics {
-  candidate_count: number;
-  filter_ms: number;
-  llm_ms: number;
-  total_ms: number;
-}
+import {
+  DEFAULT_LOCATIONS,
+  DEFAULT_CUISINES,
+  DEFAULT_TRENDING,
+} from "@/constants/initialData";
+import type { RestaurantItem, RecommendationCard, Metrics } from "@/types";
 
 const INSPIRATION_DISHES = [
   { name: "Biryani", image: "https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?w=300&auto=format&fit=crop&q=80" },
@@ -67,9 +39,9 @@ const FEATURE_CARDS = [
 ];
 
 export default function HomePage() {
-  // Metadata state
-  const [locations, setLocations] = useState<string[]>([]);
-  const [cuisines, setCuisines] = useState<string[]>([]);
+  // Metadata state with instant fallbacks so dropdowns are never blank
+  const [locations, setLocations] = useState<string[]>(DEFAULT_LOCATIONS);
+  const [cuisines, setCuisines] = useState<string[]>(DEFAULT_CUISINES);
   const [totalRestaurants, setTotalRestaurants] = useState<number>(9249);
   const [totalLocalities, setTotalLocalities] = useState<number>(92);
 
@@ -79,8 +51,8 @@ export default function HomePage() {
   const [totalFound, setTotalFound] = useState<number>(0);
   const [isSearching, setIsSearching] = useState<boolean>(false);
 
-  // Trending state
-  const [trending, setTrending] = useState<RestaurantItem[]>([]);
+  // Trending state with verified top restaurants so the section is never blank
+  const [trending, setTrending] = useState<RestaurantItem[]>(DEFAULT_TRENDING);
 
   // Form input state
   const [selectedLocation, setSelectedLocation] = useState<string>("Koramangala 5th Block");
@@ -100,29 +72,43 @@ export default function HomePage() {
   // Active Category tab
   const [activeTab, setActiveTab] = useState<string>("dining");
 
-  // Fetch initial metadata & trending restaurants
+  // Fetch live metadata & trending restaurants from backend with automatic retry
   useEffect(() => {
-    async function loadInitialData() {
+    let isMounted = true;
+
+    async function loadInitialData(retryCount = 0) {
       try {
         const metaRes = await fetch("/api/metadata");
         if (metaRes.ok) {
           const metaData = await metaRes.json();
-          setLocations(metaData.locations || []);
-          setCuisines(metaData.cuisines || []);
-          setTotalRestaurants(metaData.total_restaurants || 9249);
-          setTotalLocalities(metaData.total_localities || 92);
+          if (isMounted) {
+            if (metaData.locations?.length) setLocations(metaData.locations);
+            if (metaData.cuisines?.length) setCuisines(metaData.cuisines);
+            if (metaData.total_restaurants) setTotalRestaurants(metaData.total_restaurants);
+            if (metaData.total_localities) setTotalLocalities(metaData.total_localities);
+          }
         }
 
         const trendRes = await fetch("/api/trending");
         if (trendRes.ok) {
           const trendData = await trendRes.json();
-          setTrending(trendData.trending || []);
+          if (isMounted && trendData.trending?.length) {
+            setTrending(trendData.trending);
+          }
         }
       } catch (err) {
-        console.error("Failed to load initial data:", err);
+        console.warn("Initial data load attempt failed (backend may be spinning up):", err);
+        // Retry once after 3.5s in case Render backend was waking up from sleep
+        if (retryCount < 2 && isMounted) {
+          setTimeout(() => loadInitialData(retryCount + 1), 3500);
+        }
       }
     }
+
     loadInitialData();
+    return () => {
+      isMounted = false;
+    };
   }, []);
 
   // Handle Search Input with debounce

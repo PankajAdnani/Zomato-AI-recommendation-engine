@@ -1,6 +1,7 @@
 import type { NextConfig } from "next";
 
-const backendUrl = process.env.FASTAPI_BACKEND_URL || "http://127.0.0.1:8000";
+const rawBackendUrl = process.env.FASTAPI_BACKEND_URL || "http://127.0.0.1:8000";
+const backendUrl = rawBackendUrl.replace(/\/+$/, "");
 
 const nextConfig: NextConfig = {
   output: "standalone",
